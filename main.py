@@ -1,128 +1,12 @@
-import io
 import sys
+
+from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPalette, QColor
 
-from my_fractions_3 import MyFractionsApp3
-from my_fractions import MyFractionsApp
-from my_fractions_2 import MyFractionsApp2
-
-# Шаблон XML для интерфейса
-template = '''<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
- <!-- Главное окно -->
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>644</width>
-    <height>129</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <!-- Центральный виджет сеткой -->
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <!-- Вложенная сетка для размещения метки -->
-    <item row="0" column="1">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <widget class="QLabel" name="textmath">
-        <!-- Настройки шрифта метки -->
-        <property name="font">
-         <font>
-          <family>Times New Roman</family>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <!-- Текст метки -->
-        <property name="text">
-         <string>                     ДРОБИ</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <!-- Кнопка "ОБЩИЙ ЗНАМЕНАТЕЛЬ" -->
-    <item row="1" column="2">
-     <widget class="QPushButton" name="equations">
-      <!-- Базовый размер кнопки -->
-      <property name="baseSize">
-       <size>
-        <width>450</width>
-        <height>50</height>
-       </size>
-      </property>
-      <!-- Настройки шрифта кнопки -->
-      <property name="font">
-       <font>
-        <family>Times New Roman</family>
-       </font>
-      </property>
-      <!-- Текст кнопки -->
-      <property name="text">
-       <string>ОБЩИЙ ЗНАМЕНАТЕЛЬ</string>
-      </property>
-     </widget>
-    </item>
-    <!-- Кнопка "НЕПРАВИЛЬНЫЕ ДРОБИ" -->
-    <item row="1" column="1">
-     <widget class="QPushButton" name="measurement">
-      <!-- Настройки шрифта кнопки -->
-      <property name="font">
-       <font>
-        <family>Times New Roman</family>
-       </font>
-      </property>
-      <!-- Текст кнопки -->
-      <property name="text">
-       <string>НЕПРАВИЛЬНЫЕ ДРОБИ</string>
-      </property>
-     </widget>
-    </item>
-    <!-- Кнопка "ДРОБИ" -->
-    <item row="1" column="0">
-     <widget class="QPushButton" name="fractions">
-      <!-- Настройки шрифта кнопки -->
-      <property name="font">
-       <font>
-        <family>Times New Roman</family>
-       </font>
-      </property>
-      <!-- Текст кнопки -->
-      <property name="text">
-       <string>ДРОБИ</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <!-- Меню -->
-  <widget class="QMenuBar" name="menubar">
-   <!-- Геометрия меню -->
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>644</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <!-- Строка состояния -->
-  <widget class="QStatusBar" name="statusbar"/>
- </widget>
- <!-- Ресурсы -->
- <resources/>
- <!-- Соединения -->
- <connections/>
-</ui>'''
+from my_fractions.my_fractions import MyFractionsApp
+from my_fractions.my_fractions_2 import MyFractionsApp2
+from my_fractions.my_fractions_3 import MyFractionsApp3
 
 
 # Класс для главного окна
@@ -131,8 +15,7 @@ class MyWindow(QMainWindow):
         super(MyWindow, self).__init__()
 
         # Загрузка интерфейса из шаблона
-        f = io.StringIO(template)
-        loadUi(f, self)
+        uic.loadUi('ui/frac_main.ui', self)
 
         # Фиксированный размер окна
         self.setFixedSize(self.size())

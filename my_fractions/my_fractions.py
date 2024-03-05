@@ -1,4 +1,6 @@
 import random
+
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication
 from fractions import Fraction
 from fraction.frac_1 import Ui_Form  # Подключение сгенерированного файла с интерфейсом
@@ -100,6 +102,8 @@ class MyFractionsApp(QDialog, Ui_Form):
         return Fraction(numerator, denominator)
 
     def setup_fraction(self):
+        font = QtGui.QFont()
+        font.setPointSize(18)
         # Генерация двух случайных правильных дробей
         first_fraction = self.generate_proper_fraction()
         second_fraction = self.generate_proper_fraction()
@@ -111,7 +115,12 @@ class MyFractionsApp(QDialog, Ui_Form):
         # Отображение дробей и знака в пользовательском интерфейсе
         self.first_number.setText(str(first_fraction.numerator))
         self.second_number.setText(str(first_fraction.denominator))
+
+        # Установка размера шрифта и выравнивания для знака операции
+        self.sign.setFont(font)
+        self.sign.setAlignment(QtCore.Qt.AlignCenter)  # Установка выравнивания в центр
         self.sign.setText(sign)
+
         self.fourth_number.setText(str(second_fraction.numerator))
         self.firth_number.setText(str(second_fraction.denominator))
 
